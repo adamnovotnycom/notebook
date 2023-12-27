@@ -1,0 +1,16 @@
+version: '3'
+services:
+  notebook:
+    container_name: notebook
+    image: notebook_image
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/mnt/app
+    working_dir: /mnt/app/
+    stdin_open: true
+    tty: true
+    restart: always
+    ports:
+      - "8888:8888"
