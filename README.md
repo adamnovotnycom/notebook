@@ -1,5 +1,5 @@
 # Notebook
-Creates standard Python docker container to run scripts and connect to VS Code
+Creates standard Python docker container using [Apple Container](https://github.com/apple/container) to run scripts and connect to VS Code
 
 ## Build Container
 ```bash
