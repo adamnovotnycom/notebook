@@ -1,4 +1,6 @@
 *.DS_Store
+*scripts/*
+*dcf/*
 *.vscode
 *.pytest_cache
 *.log"
