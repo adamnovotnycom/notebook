@@ -8,14 +8,14 @@ container system start
 container build -t notebook .
 ```
 
-## Python REPL
+## Python REPL - create container
 ```bash
-container run -it --name notebook -p 0.0.0.0:8888:8888 -v ./:/mnt/app/ notebook python
+container run -it --name notebook -p 0.0.0.0:8888:8888 -v ./:/mnt/app/ notebook python --version
 ```
 
-## Python script
+## Python script - existing container
 ```bash
-container run --name notebook -p 0.0.0.0:8888:8888 -v ./:/mnt/app/ notebook python /mnt/app/example.py
+container stop notebook && container rm notebook && container run --name notebook -p 0.0.0.0:8888:8888 -v ./:/mnt/app/ notebook python /mnt/app/example.py
 ```
 
 ## Notebook
