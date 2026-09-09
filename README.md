@@ -49,6 +49,17 @@ Execute one-time command
 container exec codex ls
 ```
 
+Trigger a codex prompt
+```
+container exec -i codex \
+sh -lc 'codex exec \
+--model gpt-5.6-sol \
+--skip-git-repo-check \
+-c '\''model_reasoning_effort="medium"'\'' \
+-c '\''web_search="live"'\'' \
+- < /workspace/task.md'
+```
+
 End session, container is stopped and removed automatically in interactive session
 ```
 container system stop

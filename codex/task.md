@@ -1,0 +1,1 @@
+What is the current day and time? Append output to files log.md and log.txt
