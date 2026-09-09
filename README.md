@@ -33,8 +33,10 @@ container stop notebook && container rm notebook
 container system stop
 ```
 
+
+
 ## Codex Commands
-Inside codex/ folder
+Inside /codex/ folder
 ```
 container build -t codex .
 ```
@@ -63,4 +65,27 @@ sh -lc 'codex exec \
 End session, container is stopped and removed automatically in interactive session
 ```
 container system stop
+```
+
+
+
+## Claude Commands
+Inside /claude/ folder
+```
+container build -t claude .
+```
+
+Start and login
+```
+container run --rm -it --name claude -v ".:/workspace" claude --search
+```
+
+Execute one-time command
+```
+container exec claude ls
+```
+
+Trigger a claude prompt
+```
+container exec -i claude sh -c 'claude -p "$(cat /workspace/task.md)"'
 ```
