@@ -10,12 +10,12 @@ container build -t notebook .
 
 ## Python script - create container
 ```bash
-container run -it --name notebook -p 0.0.0.0:8888:8888 -v ./:/mnt/app/ notebook python /mnt/app/example.py
+container run -it --name notebook -p 0.0.0.0:8888:8888 -v ./:/mnt/app/ notebook python /mnt/app/scripts/example.py
 ```
 
 ## Python script - existing container
 ```bash
-container stop notebook && container rm notebook && container run --name notebook -p 0.0.0.0:8888:8888 -v ./:/mnt/app/ notebook python /mnt/app/example.py
+container stop notebook && container rm notebook && container run --name notebook -p 0.0.0.0:8888:8888 -v ./:/mnt/app/ notebook python /mnt/app/scripts/example.py
 ```
 
 ## Notebook
@@ -30,5 +30,26 @@ container run -it --name notebook -p 0.0.0.0:8888:8888 -v ./:/mnt/app/ notebook 
 ```
 container stop notebook && container rm notebook
 
+container system stop
+```
+
+## Codex Commands
+Inside codex/ folder
+```
+container build -t codex .
+```
+
+Start codex and login
+```
+container run --rm -it --name codex -v ".:/workspace" codex --search
+```
+
+Execute one-time command
+```
+container exec codex ls
+```
+
+End session, container is stopped and removed automatically in interactive session
+```
 container system stop
 ```
