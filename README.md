@@ -77,7 +77,7 @@ container build -t claude .
 
 Start and login
 ```
-container run --rm -it --name claude -v ".:/workspace" claude --search
+container run --rm -it --name claude -v ".:/workspace" claude
 ```
 
 Execute one-time command
