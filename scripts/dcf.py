@@ -31,7 +31,7 @@ def dcf(
     discount_factor = df.loc["discount_factor", df_columns[-1]]
     pv_terminal_value = terminal_value * discount_factor
     enterprise_value = df.loc["pv_free_cash_flow"].sum() + pv_terminal_value
-    equity_value = enterprise_value - debt[-1] - cash[-1]
+    equity_value = enterprise_value - debt[-1] + cash[-1]
     equity_value_per_share = equity_value / total_shares_outstanding[-1]
     print(f"""
 - pv_free_cash_flow_sum: {df.loc['pv_free_cash_flow'].sum()}
