@@ -8,14 +8,9 @@ container system start
 container build -t notebook .
 ```
 
-## Python script - create container
+## Create container, run script, remove container
 ```bash
-container run -it --name notebook -p 0.0.0.0:8888:8888 -v ./:/mnt/app/ notebook python /mnt/app/scripts/example.py
-```
-
-## Python script - existing container
-```bash
-container stop notebook && container rm notebook && container run --name notebook -p 0.0.0.0:8888:8888 -v ./:/mnt/app/ notebook python /mnt/app/scripts/example.py
+container run -it --rm --name notebook -p 0.0.0.0:8888:8888 -v ./:/mnt/app/ notebook python /mnt/app/scripts/example.py
 ```
 
 ## Notebook
