@@ -1,0 +1,1 @@
+Add details about latest commit to README.

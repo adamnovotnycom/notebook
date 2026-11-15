@@ -62,6 +62,23 @@ End session, container is stopped and removed automatically in interactive sessi
 container system stop
 ```
 
+### Working with a GitHub repository
+
+Use this command instead of the standard start command above, then log in to Codex. If the `codex` container is already running, end that session first so it can be recreated with the token. For a fine-grained PAT, select that repository and grant Contents: Read and write:
+
+```bash
+read -s "GH_TOKEN?GitHub PAT: "
+export GH_TOKEN
+
+container run --rm -it --name codex -e GH_TOKEN="$GH_TOKEN" -v ".:/workspace" codex --search
+```
+
+Run agent with instructions and commit to Github:
+
+```bash
+bash github-existing-task.sh
+```
+
 
 
 ## Claude Commands
