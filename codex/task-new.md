@@ -1,0 +1,1 @@
+In folder ProjectTrust and current branch, add details about latest commit to README

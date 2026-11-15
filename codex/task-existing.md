@@ -1,0 +1,1 @@
+In folder ProjectTrust and find branch where any document in /docs folder has flag "agent-ready". Impletement the instructions above this flag.
