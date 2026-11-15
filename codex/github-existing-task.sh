@@ -2,8 +2,10 @@
 container exec -i codex sh -s <<'SCRIPT'
 set -eu
 
-REPO="github.com/adamnovotnycom/ProjectTrust.git"
-WORKDIR="ProjectTrust"
+REPO="github.com/adamnovotnycom/some-repo.git"
+WORKDIR="some-repo"
+git config --global user.email 'codex@adamnovotny.com'
+git config --global user.name 'Codex'
 
 rm -rf "$WORKDIR"
 git clone "https://x-access-token:${GH_TOKEN}@${REPO}"
@@ -13,7 +15,7 @@ git fetch --all --prune
 git status
 
 TASK="Work in the repository at '$WORKDIR'. 
-Find the first branch where any document in folder /docs/in_progress 
+Find the first branch where any markdown document in folder /docs/in_progress 
 has flag "agent-ready" at the bottom of the document. 
 Write "agent-start" and current date and time below "agent-ready" flag. 
 Implement the instructions above "agent-ready" and below "agent-finished" flag (if any).
@@ -25,8 +27,12 @@ Choose the appropriate existing branch from this list:
 Available remote branches:
 $(git branch --remotes --format='%(refname:short)' | sed 's#^origin/##' | sort -u)
 
-Check it out before making edits. Do not create a new branch. 
-Work directly in the checked out branch and do not switch to a different branch when finished."
+Check it out before making edits. 
+Do not create a new branch. 
+Work directly in the checked out branch.
+Do not switch to a different branch when finished.
+Complete all work as a single new commit to the existing branch with a brief commit message.
+Do NOT push any changes to github."
 
 codex exec \
   --model gpt-5.6-sol \
@@ -42,14 +48,6 @@ if [ -z "$BRANCH" ] || ! git show-ref --verify --quiet "refs/remotes/origin/$BRA
 fi
 
 git status
-git config --global user.email 'codex@adamnovotny.com'
-git config --global user.name 'Codex'
-git add .
-if git diff --cached --quiet; then
-  echo "No changes to commit; skipping commit and push."
-else
-  git commit -m 'Update pages'
-  git push origin "HEAD:refs/heads/$BRANCH"
-fi
+git push origin "HEAD:refs/heads/$BRANCH"
 
 SCRIPT

@@ -73,10 +73,10 @@ export GH_TOKEN
 container run --rm -it --name codex -e GH_TOKEN="$GH_TOKEN" -v ".:/workspace" codex --search
 ```
 
-Edit [github.sh](github.sh) with the HTTPS repository URL and task.md with code change instructions.
+Run agent with instructions and commit to Github:
 
 ```bash
-bash github.sh
+bash github-existing-task.sh
 ```
 
 

@@ -2,9 +2,10 @@
 container exec -i codex sh -s <<'SCRIPT'
 set -eu
 
-REPO="github.com/adamnovotnycom/ProjectTrust.git"
-WORKDIR="ProjectTrust"
-export WORKDIR
+REPO="github.com/adamnovotnycom/some-repo.git"
+WORKDIR="some-repo"
+git config --global user.email 'codex@adamnovotny.com'
+git config --global user.name 'Codex'
 
 rm -rf "$WORKDIR"
 git clone "https://x-access-token:${GH_TOKEN}@${REPO}"
@@ -26,8 +27,6 @@ $(cat task-new.md)"
 
 cd "$WORKDIR"
 git status
-git config --global user.email 'codex@adamnovotny.com'
-git config --global user.name 'Codex'
 git add .
 if git diff --cached --quiet; then
   echo "No changes to commit; skipping commit and push."
